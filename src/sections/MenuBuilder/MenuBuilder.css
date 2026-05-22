@@ -1,0 +1,141 @@
+.menu-builder {
+  background-color: var(--color-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-builder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.6;
+}
+
+.menu-builder__sizes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.menu-builder__size-ticket {
+  background-color: var(--color-gray);
+  border: 2px dashed var(--color-gray-light);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.menu-builder__size-ticket:hover {
+  border-color: var(--color-yellow);
+  transform: rotate(-1deg);
+}
+
+.menu-builder__size-name {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+}
+
+.menu-builder__size-price {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--color-yellow);
+}
+
+.menu-builder__proteins,
+.menu-builder__bases {
+  margin-bottom: var(--space-xl);
+}
+
+.menu-builder__subheading {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.menu-builder__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  justify-content: center;
+}
+
+.menu-builder__bases-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.menu-builder__base-card {
+  background-color: var(--color-gray);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-gray-light);
+}
+
+.menu-builder__base-name {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--color-red);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.05em;
+}
+
+.menu-builder__base-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.menu-builder__base-items li {
+  font-size: 0.95rem;
+  color: var(--color-white);
+  opacity: 0.85;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.menu-builder__base-items li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-yellow);
+}
+
+.menu-builder__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+.menu-builder__phrase {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-white);
+  opacity: 0.8;
+}
+
+@media (min-width: 640px) {
+  .menu-builder__sizes {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .menu-builder__bases-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

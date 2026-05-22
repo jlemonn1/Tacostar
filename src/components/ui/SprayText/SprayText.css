@@ -1,0 +1,25 @@
+.spray-text {
+  font-family: var(--font-title);
+  color: var(--color-white);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  opacity: 0;
+  animation: sprayReveal 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.spray-text--xl {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+}
+
+.spray-text--lg {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+.spray-text--md {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.spray-text--accent {
+  color: var(--color-yellow);
+}

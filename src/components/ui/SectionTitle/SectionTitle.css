@@ -1,0 +1,32 @@
+.section-title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.section-title--center {
+  align-items: center;
+  text-align: center;
+}
+
+.section-title--left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.section-title__subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-white);
+  opacity: 0.7;
+  max-width: 600px;
+}
+
+.section-title__underline {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-red), var(--color-yellow));
+  border-radius: 2px;
+  margin-top: var(--space-xs);
+}

@@ -1,0 +1,168 @@
+.horarios {
+  background-color: var(--color-black);
+  position: relative;
+}
+
+.horarios__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.horarios__flyer {
+  background-color: var(--color-gray);
+  border: 3px solid var(--color-gray-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transform: rotate(-1deg);
+  transition: transform 0.3s ease;
+}
+
+.horarios__flyer:hover {
+  transform: rotate(0deg);
+}
+
+.horarios__flyer--contact {
+  transform: rotate(1deg);
+}
+
+.horarios__flyer--contact:hover {
+  transform: rotate(0deg);
+}
+
+.horarios__flyer-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px dashed var(--color-gray-light);
+}
+
+.horarios__flyer-icon {
+  color: var(--color-yellow);
+  flex-shrink: 0;
+}
+
+.horarios__flyer-title {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  letter-spacing: 0.1em;
+}
+
+.horarios__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.horarios__day {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-gray-light);
+  position: relative;
+}
+
+.horarios__day:last-child {
+  border-bottom: none;
+}
+
+.horarios__day--highlight {
+  background-color: rgba(230, 57, 70, 0.15);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem var(--space-sm);
+  margin: 0 calc(-1 * var(--space-sm));
+  border-bottom: none;
+}
+
+.horarios__day-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-white);
+  min-width: 100px;
+}
+
+.horarios__day-hours {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-white);
+  opacity: 0.85;
+  text-align: right;
+}
+
+.horarios__day-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+  background-color: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.horarios__contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.horarios__contact-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-white);
+  opacity: 0.9;
+  word-break: break-word;
+}
+
+.horarios__contact-row svg {
+  color: var(--color-yellow);
+  flex-shrink: 0;
+}
+
+.horarios__contact-row--link {
+  transition: color 0.3s ease;
+}
+
+.horarios__contact-row--link:hover {
+  color: var(--color-yellow);
+}
+
+.horarios__map-wrapper {
+  margin-top: var(--space-xl);
+}
+
+.horarios__map-title {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .horarios__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .horarios__flyer {
+    padding: var(--space-xl);
+  }
+}
