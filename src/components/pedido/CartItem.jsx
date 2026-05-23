@@ -1,5 +1,6 @@
 import React from 'react';
 import { Minus, Plus, Trash2 } from 'lucide-react';
+import { customTacoConfig } from '../../data/orderConfig';
 import './CartItem.css';
 
 const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
@@ -9,12 +10,24 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
   const details = () => {
     if (custom) {
       const parts = [];
-      if (custom.size) parts.push(custom.size);
-      if (custom.proteins?.length) parts.push(custom.proteins.join(', '));
-      if (custom.base) parts.push(custom.base);
-      if (custom.sauces?.length) parts.push(`Salsas: ${custom.sauces.join(', ')}`);
-      if (custom.extras?.length) parts.push(`Extras: ${custom.extras.join(', ')}`);
-      if (custom.gratin) parts.push(custom.gratin);
+      const size = customTacoConfig.sizes.find(s => s.key === custom.sizeKey);
+      if (size) parts.push(size.name);
+      if (custom.proteinKeys?.length) {
+        const names = custom.proteinKeys.map(k => customTacoConfig.proteins.find(p => p.key === k)?.name).filter(Boolean);
+        if (names.length) parts.push(names.join(', '));
+      }
+      const base = customTacoConfig.bases.find(b => b.key === custom.baseKey);
+      if (base) parts.push(base.name);
+      if (custom.sauceKeys?.length) {
+        const names = custom.sauceKeys.map(k => customTacoConfig.sauces.find(s => s.key === k)?.name).filter(Boolean);
+        if (names.length) parts.push(`Salsas: ${names.join(', ')}`);
+      }
+      if (custom.extraKeys?.length) {
+        const names = custom.extraKeys.map(k => customTacoConfig.extras.find(e => e.key === k)?.name).filter(Boolean);
+        if (names.length) parts.push(`Extras: ${names.join(', ')}`);
+      }
+      const gratin = customTacoConfig.gratins.find(g => g.key === custom.gratinKey);
+      if (gratin) parts.push(gratin.name);
       if (custom.withMenu) parts.push(`Menú ${custom.drinkSize}`);
       return parts.join(' · ');
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { RotateCcw, Clock, Hash } from 'lucide-react';
+import { customTacoConfig } from '../../data/orderConfig';
 import './VisorPedidoDisplay.css';
 
 const VisorPedidoDisplay = ({ data, onReset }) => {
@@ -36,12 +37,42 @@ const VisorPedidoDisplay = ({ data, onReset }) => {
             </div>
             {item.custom && (
               <div className="visor-display__item-details">
-                {item.custom.size && <span>{item.custom.size}</span>}
-                {item.custom.proteins?.length > 0 && <span>Proteínas: {item.custom.proteins.join(', ')}</span>}
-                {item.custom.base && <span>Base: {item.custom.base}</span>}
-                {item.custom.sauces?.length > 0 && <span>Salsas: {item.custom.sauces.join(', ')}</span>}
-                {item.custom.extras?.length > 0 && <span>Extras: {item.custom.extras.join(', ')}</span>}
-                {item.custom.gratin && <span>{item.custom.gratin}</span>}
+                {item.custom.sizeKey && (
+                  <span>{customTacoConfig.sizes.find(s => s.key === item.custom.sizeKey)?.name}</span>
+                )}
+                {item.custom.proteinKeys?.length > 0 && (
+                  <span>
+                    Proteínas:{' '}
+                    {item.custom.proteinKeys
+                      .map(k => customTacoConfig.proteins.find(p => p.key === k)?.name)
+                      .filter(Boolean)
+                      .join(', ')}
+                  </span>
+                )}
+                {item.custom.baseKey && (
+                  <span>Base: {customTacoConfig.bases.find(b => b.key === item.custom.baseKey)?.name}</span>
+                )}
+                {item.custom.sauceKeys?.length > 0 && (
+                  <span>
+                    Salsas:{' '}
+                    {item.custom.sauceKeys
+                      .map(k => customTacoConfig.sauces.find(s => s.key === k)?.name)
+                      .filter(Boolean)
+                      .join(', ')}
+                  </span>
+                )}
+                {item.custom.extraKeys?.length > 0 && (
+                  <span>
+                    Extras:{' '}
+                    {item.custom.extraKeys
+                      .map(k => customTacoConfig.extras.find(e => e.key === k)?.name)
+                      .filter(Boolean)
+                      .join(', ')}
+                  </span>
+                )}
+                {item.custom.gratinKey && (
+                  <span>{customTacoConfig.gratins.find(g => g.key === item.custom.gratinKey)?.name}</span>
+                )}
                 {item.custom.withMenu && <span>Menú {item.custom.drinkSize}</span>}
               </div>
             )}

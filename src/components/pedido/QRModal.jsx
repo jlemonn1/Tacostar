@@ -22,8 +22,8 @@ const QRModal = ({ isOpen, onClose, onReset, orderData }) => {
         <div className="qr-modal__code">
           <QRCodeSVG
             value={jsonString}
-            size={260}
-            level="M"
+            size={300}
+            level="H"
             bgColor="#0B0C10"
             fgColor="#F1FAEE"
             includeMargin={false}

@@ -55,7 +55,12 @@ const VisorScanner = ({ onScan }) => {
             }, 2000);
           } catch {}
         },
-        () => {}
+        (errorMessage) => {
+          // Solo loguea errores de lectura, no el "no QR found" constante
+          if (!errorMessage?.includes('No Multi')) {
+            console.warn('[Scanner] error de lectura:', errorMessage);
+          }
+        }
       );
     } catch (err) {
       console.error(err);

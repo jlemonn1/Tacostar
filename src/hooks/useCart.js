@@ -3,10 +3,31 @@ import { customTacoConfig, fixedProducts, calcCustomPrice, calcFixedPrice } from
 
 const STORAGE_KEY = 'tacostar_cart';
 
+function migrateCustomItem(item) {
+  if (item.type !== 'custom' || !item.custom || item.custom.sizeKey) return item;
+  const old = item.custom;
+  return {
+    ...item,
+    custom: {
+      sizeKey: customTacoConfig.sizes.find(s => s.name === old.size)?.key || '',
+      proteinKeys: (old.proteins || []).map(n => customTacoConfig.proteins.find(p => p.name === n)?.key).filter(Boolean),
+      baseKey: customTacoConfig.bases.find(b => b.name === old.base)?.key || '',
+      sauceKeys: (old.sauces || []).map(n => customTacoConfig.sauces.find(s => s.name === n)?.key).filter(Boolean),
+      extraKeys: (old.extras || []).map(n => customTacoConfig.extras.find(e => e.name === n)?.key).filter(Boolean),
+      gratinKey: customTacoConfig.gratins.find(g => g.name === old.gratin)?.key || '',
+      withMenu: old.withMenu || false,
+      drinkSize: old.drinkSize || '33cl',
+    },
+  };
+}
+
 function loadCart() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const cart = JSON.parse(raw);
+      return cart.map(migrateCustomItem);
+    }
   } catch { /* noop */ }
   return [];
 }
@@ -29,11 +50,6 @@ export function useCart() {
   const addCustomItem = useCallback((selection) => {
     const unitPrice = calcCustomPrice(selection);
     const sizeName = customTacoConfig.sizes.find(s => s.key === selection.size)?.name || '';
-    const proteinNames = (selection.proteins || []).map(pk => customTacoConfig.proteins.find(p => p.key === pk)?.name).filter(Boolean);
-    const baseName = customTacoConfig.bases.find(b => b.key === selection.base)?.name || '';
-    const sauceNames = (selection.sauces || []).map(sk => customTacoConfig.sauces.find(s => s.key === sk)?.name).filter(Boolean);
-    const extraNames = (selection.extras || []).map(ek => customTacoConfig.extras.find(e => e.key === ek)?.name).filter(Boolean);
-    const gratinName = selection.gratin ? (customTacoConfig.gratins.find(g => g.key === selection.gratin)?.name || '') : '';
 
     const newItem = {
       id: generateId(),
@@ -42,12 +58,12 @@ export function useCart() {
       unitPrice,
       quantity: 1,
       custom: {
-        size: sizeName,
-        proteins: proteinNames,
-        base: baseName,
-        sauces: sauceNames,
-        extras: extraNames,
-        gratin: gratinName,
+        sizeKey: selection.size,
+        proteinKeys: selection.proteins || [],
+        baseKey: selection.base,
+        sauceKeys: selection.sauces || [],
+        extraKeys: selection.extras || [],
+        gratinKey: selection.gratin || '',
         withMenu: selection.withMenu || false,
         drinkSize: selection.drinkSize || '33cl',
       },
