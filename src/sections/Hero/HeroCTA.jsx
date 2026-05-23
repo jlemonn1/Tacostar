@@ -16,30 +16,40 @@ const ScrollArrowSVG = ({ className = '' }) => (
 const HeroCTA = () => {
   return (
     <div className="hero-cta">
-      <div className="hero-cta__buttons">
-        <RouterLink to="/pedido" className="hero-cta__link">
-          <MagneticButton variant="primary">
-            <ShoppingCart size={18} />
-            PEDIR
+      <div className="hero-cta__bar animate-fade-in-up delay-4">
+        <RouterLink to="/pedido" className="hero-cta__item hero-cta__item--main">
+          <MagneticButton variant="primary" className="hero-cta__btn-main">
+            <ShoppingCart size={16} />
+            Pedir Ahora
           </MagneticButton>
         </RouterLink>
-        <ScrollLink to="menu-completo" smooth={true} duration={600} offset={-70} className="hero-cta__link">
-          <MagneticButton variant="secondary">
-            <Utensils size={18} />
-            VER MENÚ
-          </MagneticButton>
+
+        <span className="hero-cta__sep" aria-hidden="true" />
+
+        <ScrollLink
+          to="menu-completo"
+          smooth={true}
+          duration={600}
+          offset={-70}
+          className="hero-cta__item hero-cta__item--sub"
+        >
+          <Utensils size={16} strokeWidth={1.5} />
+          <span>Menú</span>
         </ScrollLink>
-        <a href="tel:+34639140346" className="hero-cta__link">
-          <MagneticButton variant="secondary">
-            <Phone size={18} />
-            LLAMAR
-          </MagneticButton>
+
+        <span className="hero-cta__sep" aria-hidden="true" />
+
+        <a href="tel:+34639140346" className="hero-cta__item hero-cta__item--sub">
+          <Phone size={16} strokeWidth={1.5} />
+          <span>Llamar</span>
         </a>
       </div>
+
       <div className="hero-cta__info animate-fade-in-up delay-5">
         <span className="hero-cta__info-dot" aria-hidden="true" />
         <span>Envío a domicilio &nbsp;•&nbsp; Recogida en local</span>
       </div>
+
       <ScrollLink to="about" smooth={true} duration={500} className="hero-cta__scroll" aria-label="Scroll down">
         <ScrollArrowSVG className="hero-cta__scroll-icon" />
       </ScrollLink>

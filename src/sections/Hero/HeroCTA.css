@@ -8,31 +8,67 @@
   margin-top: var(--space-sm);
 }
 
-.hero-cta__buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-sm);
-  width: 100%;
-  max-width: 600px;
+/* ========== Barra elegante de acciones ========== */
+.hero-cta__bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 6px;
+  background: rgba(11, 12, 16, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
-.hero-cta__link {
+/* Botón principal (Pedir) */
+.hero-cta__item--main {
   display: flex;
-  width: 100%;
+  text-decoration: none;
 }
 
-.hero-cta__link > * {
-  width: 100%;
-  justify-content: center;
+.hero-cta__btn-main {
+  padding: 0.55rem 1.4rem !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 100px !important;
+  gap: 0.4rem !important;
 }
 
-@media (max-width: 640px) {
-  .hero-cta__buttons {
-    grid-template-columns: 1fr;
-    max-width: 280px;
-  }
+/* Ítems secundarios (Menú / Llamar) */
+.hero-cta__item--sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(241, 250, 238, 0.65);
+  text-decoration: none;
+  border-radius: 100px;
+  transition: color 0.3s ease, background 0.3s ease;
+  cursor: pointer;
 }
 
+.hero-cta__item--sub:hover {
+  color: var(--color-yellow);
+  background: rgba(255, 183, 3, 0.08);
+}
+
+/* Separadores verticales */
+.hero-cta__sep {
+  display: block;
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* ========== Info inferior ========== */
 .hero-cta__info {
   display: inline-flex;
   align-items: center;
@@ -53,6 +89,7 @@
   animation: pulse-ring 2.5s ease-out infinite;
 }
 
+/* ========== Scroll arrow ========== */
 .hero-cta__scroll {
   color: var(--color-white);
   opacity: 0.7;
@@ -76,4 +113,42 @@
 
 .hero-cta__scroll:hover .hero-cta__scroll-icon {
   filter: drop-shadow(0 0 12px rgba(255,183,3,0.6));
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 640px) {
+  .hero-cta__bar {
+    padding: 5px;
+  }
+
+  .hero-cta__btn-main {
+    padding: 0.5rem 1.1rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .hero-cta__item--sub {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-cta__sep {
+    height: 18px;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }

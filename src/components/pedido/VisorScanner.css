@@ -2,24 +2,21 @@
   position: relative;
   width: 100%;
   max-width: 400px;
-  aspect-ratio: 1;
-  border-radius: var(--radius-md);
-  overflow: hidden;
+  min-height: 300px;
   background: #000;
   border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
-.visor-scanner__viewport,
-.visor-scanner__viewport > div,
-.visor-scanner__viewport video {
-  width: 100% !important;
-  height: 100% !important;
+.visor-scanner__viewport {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
 }
 
-.visor-scanner__viewport video {
-  object-fit: cover !important;
-  display: block;
-}
+/* Dejamos que la librería maneje las dimensiones del video/canvas internamente.
+   NO aplicamos !important ni object-fit para no distorsionar el frame que analiza. */
 
 .visor-scanner__loading,
 .visor-scanner__error {

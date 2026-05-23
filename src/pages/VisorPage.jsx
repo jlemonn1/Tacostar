@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import VisorScanner from '../components/pedido/VisorScanner';
 import VisorPedidoDisplay from '../components/pedido/VisorPedidoDisplay';
 import './VisorPage.css';
@@ -6,25 +6,34 @@ import './VisorPage.css';
 const VisorPage = () => {
   const [scannedData, setScannedData] = useState(null);
 
-  const handleScan = (data) => {
+  const handleScan = useCallback((data) => {
     try {
       const parsed = JSON.parse(data);
       setScannedData(parsed);
     } catch (e) {
       console.error('QR inválido', e);
-      alert('Código QR no válido');
+      // No alert para no bloquear el hilo; el scanner ya se detuvo
     }
-  };
+  }, []);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setScannedData(null);
-  };
+  }, []);
 
   return (
     <div className="visor-page">
       <div className="visor-page__container">
         <div className="visor-page__scanner">
-          <VisorScanner onScan={handleScan} />
+          {!scannedData ? (
+            <VisorScanner onScan={handleScan} />
+          ) : (
+            <div className="visor-page__scanner-placeholder">
+              <h3>Pedido escaneado</h3>
+              <button className="visor-page__scanner-retry" onClick={handleReset}>
+                Escanear otro
+              </button>
+            </div>
+          )}
         </div>
         <div className="visor-page__display">
           {scannedData ? (

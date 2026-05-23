@@ -68,7 +68,7 @@ export const customTacoConfig = {
     { key: 'queso_cabra', name: 'Queso de cabra', extraPrice: 0.50 },
     { key: 'champinones', name: 'Champiñones', extraPrice: 0.50 },
     { key: 'vacaquerie', name: 'Vacaquerie', extraPrice: 0.50 },
-    { key: 'jalapenos', name: 'Jalapeños', extraPrice: 0.50 },
+    { key: 'pimientos_picantes', name: 'Pimientos picantes', extraPrice: 0.50 },
     { key: 'bacon', name: 'Bacon', extraPrice: 0.70 },
     { key: 'huevos_cocidos', name: 'Huevos cocidos', extraPrice: 0.70 },
   ],
@@ -105,7 +105,7 @@ export const fixedProducts = [
   // COMPLEMENTOS
   { category: CATEGORY.COMPLEMENT, key: 'aros_cebolla', name: 'Aros de cebolla', price: 2.00, description: 'Crujientes, dorados y adictivos. No juzgamos si pides doble.', allowsMenu: false },
   { category: CATEGORY.COMPLEMENT, key: 'bolitas_camembert', name: 'Bolitas de camembert', price: 3.00, description: 'Queso fundido en estado puro. Cuidado, explotan de sabor.', allowsMenu: false },
-  { category: CATEGORY.COMPLEMENT, key: 'jalapenos_queso', name: 'Jalapeños con queso', price: 3.50, description: 'Para los valientes. Pica, pero pica bien.', allowsMenu: false },
+  { category: CATEGORY.COMPLEMENT, key: 'pimientos_queso', name: 'Pimientos picantes con queso', price: 3.50, description: 'Para los valientes. Pica, pero pica bien.', allowsMenu: false },
   { category: CATEGORY.COMPLEMENT, key: 'chicken_tenders', name: 'Chicken tenders', price: 6.00, description: 'Pollo crujiente que no necesita presentación.', allowsMenu: false },
   { category: CATEGORY.COMPLEMENT, key: 'fingers_mozzarella', name: 'Fingers de mozzarella', price: 3.00, description: 'Estirar el queso es obligatorio. Instagrammearlo, opcional.', allowsMenu: false },
   { category: CATEGORY.COMPLEMENT, key: 'nuggets_pollo', name: 'Nuggets de pollo', price: 4.00, description: 'De pollo real. Probablemente.', allowsMenu: false },

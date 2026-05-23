@@ -293,7 +293,7 @@ Incluye:
 | Bolitas de camembert  | 3,50€             |
 | Fingers de mozzarella | 3,00€             |
 | Nuggets de pollo      | 9,00€             |
-| Jalapeños con queso   | Precio no visible |
+| Pimientos picantes con queso | Precio no visible |
 
 ---
 

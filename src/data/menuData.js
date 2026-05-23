@@ -139,7 +139,7 @@ export const menuData = {
       { name: "Bolitas de camembert", price: "3,50€" },
       { name: "Fingers de mozzarella", price: "3,00€" },
       { name: "Nuggets de pollo", price: "9,00€" },
-      { name: "Jalapeños con queso", price: "Consultar" }
+      { name: "Pimientos picantes con queso", price: "Consultar" }
     ]
   },
 

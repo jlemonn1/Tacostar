@@ -5,28 +5,38 @@ import './VisorScanner.css';
 
 const VisorScanner = ({ onScan }) => {
   const scannerRef = useRef(null);
+  const onScanRef = useRef(onScan);
+  const scanAreaId = useRef(`visor-scanner-${Math.random().toString(36).substr(2, 9)}`);
   const [isScanning, setIsScanning] = useState(false);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    onScanRef.current = onScan;
+  }, [onScan]);
+
   const stopScanning = useCallback(async () => {
+    if (!scannerRef.current) return;
+
     const scanner = scannerRef.current;
     scannerRef.current = null;
     setIsScanning(false);
 
-    if (scanner && typeof scanner.stop === 'function') {
-      try {
+    try {
+      if (scanner && typeof scanner.stop === 'function') {
         await scanner.stop();
-      } catch {
-        // ignorar errores al detener
       }
+    } catch {
+      // Ignorar errores al detener
     }
   }, []);
 
   const startScanning = useCallback(async () => {
     if (scannerRef.current) return;
 
+    console.log('[Scanner] Iniciando...');
+
     try {
-      const html5QrCode = new Html5Qrcode('visor-scanner');
+      const html5QrCode = new Html5Qrcode(scanAreaId.current);
       scannerRef.current = html5QrCode;
 
       setIsScanning(true);
@@ -36,38 +46,26 @@ const VisorScanner = ({ onScan }) => {
         { facingMode: 'environment' },
         {
           fps: 10,
-          qrbox: (viewfinderWidth, viewfinderHeight) => {
-            const min = Math.min(viewfinderWidth, viewfinderHeight);
-            const size = Math.floor(min * 0.8);
-            return { width: size, height: size };
-          },
+          qrbox: { width: 250, height: 250 },
         },
         (decodedText) => {
-          onScan(decodedText);
-          try {
-            html5QrCode.pause();
-            setTimeout(() => {
-              if (scannerRef.current) {
-                try {
-                  html5QrCode.resume();
-                } catch {}
-              }
-            }, 2000);
-          } catch {}
+          if (!scannerRef.current) return; // Ya procesado
+          console.log('[Scanner] QR detectado');
+          stopScanning();
+          onScanRef.current(decodedText);
         },
-        (errorMessage) => {
-          // Solo loguea errores de lectura, no el "no QR found" constante
-          if (!errorMessage?.includes('No Multi')) {
-            console.warn('[Scanner] error de lectura:', errorMessage);
-          }
+        (_errorMessage) => {
+          // Ignorar errores de escaneo continuo (no hay QR en pantalla)
         }
       );
+
+      console.log('[Scanner] Cámara iniciada correctamente.');
     } catch (err) {
-      console.error(err);
+      console.error('[Scanner] Fallo al iniciar:', err);
       setError('No se pudo iniciar la cámara. Asegúrate de dar permisos.');
       setIsScanning(false);
     }
-  }, [onScan]);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -80,16 +78,9 @@ const VisorScanner = ({ onScan }) => {
     };
   }, [startScanning, stopScanning]);
 
-  // cleanup al desmontar
-  useEffect(() => {
-    return () => {
-      stopScanning();
-    };
-  }, [stopScanning]);
-
   return (
     <div className="visor-scanner">
-      <div id="visor-scanner" className="visor-scanner__viewport" />
+      <div id={scanAreaId.current} className="visor-scanner__viewport" />
       {!isScanning && !error && (
         <div className="visor-scanner__loading">
           <Camera size={48} className="animate-pulse" />

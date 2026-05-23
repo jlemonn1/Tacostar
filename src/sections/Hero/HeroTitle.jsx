@@ -81,7 +81,7 @@ const HeroTitle = () => {
         Tacos de la calle, sabor de Toledo
       </p>
       <p className="hero-title__sub-slogan animate-fade-in-up delay-4">
-        Auténtica cocina mexicana con ingredientes frescos y mucho cariño
+        Auténtica cocina francesa con ingredientes frescos y mucho cariño
       </p>
     </div>
   );
