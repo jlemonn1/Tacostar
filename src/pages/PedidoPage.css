@@ -3,35 +3,36 @@
   background: var(--color-black);
   background-image: radial-gradient(circle at 20% 20%, rgba(230,57,70,0.08) 0%, transparent 50%),
                     radial-gradient(circle at 80% 80%, rgba(255,183,3,0.06) 0%, transparent 50%);
-  padding-top: 80px;
-  padding-bottom: var(--space-xxl);
+  padding-top: 64px;
+  padding-bottom: var(--space-xl);
 }
 
 .pedido-page__main {
-  padding-top: var(--space-xl);
+  padding-top: var(--space-sm);
 }
 
 .pedido-page__title {
   font-family: var(--font-title);
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: var(--color-yellow);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-align: center;
   text-shadow: 0 0 10px rgba(255,183,3,0.3);
+  line-height: 1.1;
 }
 
 .pedido-page__subtitle {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: rgba(241, 250, 238, 0.7);
   text-align: center;
-  margin-top: var(--space-xs);
-  margin-bottom: var(--space-lg);
+  margin-top: 0.25rem;
+  margin-bottom: var(--space-sm);
 }
 
 .pedido-page__tabs {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-xs);
 }
 
 .pedido-page__grid {
@@ -41,18 +42,18 @@
 .pedido-page__custom-cta {
   display: flex;
   justify-content: center;
-  padding: var(--space-xl) 0;
+  padding: var(--space-md) 0;
 }
 
 .pedido-page__custom-card {
   max-width: 480px;
   width: 100%;
-  padding: var(--space-xl);
+  padding: var(--space-lg);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 }
 
 .pedido-page__custom-title {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Html5Qrcode } from 'html5-qrcode';
 import { Camera, CameraOff } from 'lucide-react';
 import './VisorScanner.css';
@@ -8,40 +8,79 @@ const VisorScanner = ({ onScan }) => {
   const [isScanning, setIsScanning] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    let scanner;
-    const start = async () => {
-      try {
-        scanner = new Html5Qrcode('visor-scanner');
-        scannerRef.current = scanner;
-        await scanner.start(
-          { facingMode: 'environment' },
-          { fps: 10, qrbox: { width: 220, height: 220 } },
-          (decodedText) => {
-            onScan(decodedText);
-            // Detener brevemente para no escanear repetidamente
-            scanner.pause();
-            setTimeout(() => scanner.resume(), 2000);
-          },
-          () => {}
-        );
-        setIsScanning(true);
-        setError(null);
-      } catch (err) {
-        console.error(err);
-        setError('No se pudo iniciar la cámara. Asegúrate de dar permisos.');
-        setIsScanning(false);
-      }
-    };
+  const stopScanning = useCallback(async () => {
+    const scanner = scannerRef.current;
+    scannerRef.current = null;
+    setIsScanning(false);
 
-    start();
+    if (scanner && typeof scanner.stop === 'function') {
+      try {
+        await scanner.stop();
+      } catch {
+        // ignorar errores al detener
+      }
+    }
+  }, []);
+
+  const startScanning = useCallback(async () => {
+    if (scannerRef.current) return;
+
+    try {
+      const html5QrCode = new Html5Qrcode('visor-scanner');
+      scannerRef.current = html5QrCode;
+
+      setIsScanning(true);
+      setError(null);
+
+      await html5QrCode.start(
+        { facingMode: 'environment' },
+        {
+          fps: 10,
+          qrbox: (viewfinderWidth, viewfinderHeight) => {
+            const min = Math.min(viewfinderWidth, viewfinderHeight);
+            const size = Math.floor(min * 0.8);
+            return { width: size, height: size };
+          },
+        },
+        (decodedText) => {
+          onScan(decodedText);
+          try {
+            html5QrCode.pause();
+            setTimeout(() => {
+              if (scannerRef.current) {
+                try {
+                  html5QrCode.resume();
+                } catch {}
+              }
+            }, 2000);
+          } catch {}
+        },
+        () => {}
+      );
+    } catch (err) {
+      console.error(err);
+      setError('No se pudo iniciar la cámara. Asegúrate de dar permisos.');
+      setIsScanning(false);
+    }
+  }, [onScan]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startScanning();
+    }, 300);
 
     return () => {
-      if (scannerRef.current) {
-        scannerRef.current.stop().catch(() => {});
-      }
+      clearTimeout(timer);
+      stopScanning();
     };
-  }, [onScan]);
+  }, [startScanning, stopScanning]);
+
+  // cleanup al desmontar
+  useEffect(() => {
+    return () => {
+      stopScanning();
+    };
+  }, [stopScanning]);
 
   return (
     <div className="visor-scanner">

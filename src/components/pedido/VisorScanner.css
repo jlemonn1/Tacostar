@@ -9,13 +9,16 @@
   border: 1px solid var(--glass-border);
 }
 
-.visor-scanner__viewport {
-  width: 100%;
-  height: 100%;
+.visor-scanner__viewport,
+.visor-scanner__viewport > div,
+.visor-scanner__viewport video {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .visor-scanner__viewport video {
   object-fit: cover !important;
+  display: block;
 }
 
 .visor-scanner__loading,

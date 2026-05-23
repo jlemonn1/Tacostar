@@ -23,6 +23,23 @@
   text-transform: uppercase;
   color: var(--color-red);
   margin-bottom: var(--space-xs);
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+.hero-title__badge-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--color-yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0.9;
+  z-index: 1;
 }
 
 .hero-title__badge-pulse {

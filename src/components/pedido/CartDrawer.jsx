@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Trash2, Minus, Plus } from 'lucide-react';
+import { X, Plus } from 'lucide-react';
 import CartItem from './CartItem';
 import CartResumen from './CartResumen';
 import './CartDrawer.css';
@@ -33,6 +33,12 @@ const CartDrawer = ({ isOpen, onClose, cart, onUpdateQuantity, onRemove, total, 
                   />
                 </li>
               ))}
+              <li className="cart-drawer__list-item cart-drawer__add-more-wrap">
+                <button className="cart-drawer__add-more" onClick={onClose}>
+                  <Plus size={16} />
+                  Agregar más
+                </button>
+              </li>
             </ul>
           )}
         </div>

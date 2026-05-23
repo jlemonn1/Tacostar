@@ -2,7 +2,7 @@ import React from 'react';
 import { Plus } from 'lucide-react';
 import './ProductoCard.css';
 
-const ProductoCard = ({ product, onAdd, category }) => {
+const ProductoCard = ({ product, onAdd, category, hideSizeBadge }) => {
   const handleAdd = () => {
     onAdd(product, category);
   };
@@ -14,7 +14,7 @@ const ProductoCard = ({ product, onAdd, category }) => {
         {product.description && (
           <p className="producto-card__desc">{product.description}</p>
         )}
-        {product.tacoSize && (
+        {product.tacoSize && !hideSizeBadge && (
           <span className="producto-card__badge">{product.tacoSize === 'simple' ? 'Taco Simple' : product.tacoSize === 'doble' ? 'Taco Doble' : 'Taco Maxi'}</span>
         )}
       </div>

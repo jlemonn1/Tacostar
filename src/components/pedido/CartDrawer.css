@@ -88,6 +88,35 @@
   gap: var(--space-sm);
 }
 
+.cart-drawer__add-more-wrap {
+  padding-top: var(--space-xs);
+}
+
+.cart-drawer__add-more {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.7rem 1rem;
+  background: transparent;
+  color: var(--color-white);
+  border: 1.5px solid var(--glass-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cart-drawer__add-more:hover {
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+  background: rgba(255, 183, 3, 0.08);
+}
+
 .cart-drawer__footer {
   padding: var(--space-md);
   border-top: 1px solid var(--glass-border);

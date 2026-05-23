@@ -41,6 +41,7 @@ const PedidoPage = () => {
       return;
     }
     addFixedItem(product.key);
+    setShowCart(true);
   };
 
   const handleCustomAdd = (selection) => {

@@ -11,3 +11,26 @@
   color: var(--color-gray-light);
   font-family: var(--font-body);
 }
+
+.producto-grid__sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.producto-grid__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.producto-grid__section-title {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  color: var(--color-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255, 183, 3, 0.25);
+  text-shadow: 0 0 6px rgba(255,183,3,0.2);
+}
