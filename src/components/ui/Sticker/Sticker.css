@@ -1,0 +1,53 @@
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.sticker::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent 60%);
+  pointer-events: none;
+}
+
+.sticker--red {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.sticker--yellow {
+  background-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+.sticker--blue {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+}
+
+.sticker--black {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  border: 1px solid var(--color-gray-light);
+}
+
+.sticker--sm {
+  font-size: 0.6rem;
+  padding: 0.15rem 0.5rem;
+}
+
+.sticker--lg {
+  font-size: 0.9rem;
+  padding: 0.35rem 0.9rem;
+}

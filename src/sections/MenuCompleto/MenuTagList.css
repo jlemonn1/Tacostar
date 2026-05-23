@@ -1,0 +1,22 @@
+.menu-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.menu-tag-list__tag {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--color-black);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--radius-sm);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.menu-tag-list__tag:hover {
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+  box-shadow: 0 0 8px rgba(255,183,3,0.15);
+}

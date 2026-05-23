@@ -1,0 +1,40 @@
+.menu-base-tab__intro {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  font-size: 1rem;
+  color: var(--color-white);
+  opacity: 0.85;
+}
+
+.menu-base-tab__section {
+  margin-bottom: var(--space-lg);
+}
+
+.menu-base-tab__title {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+}
+
+.menu-base-tab__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.menu-base-tab__bases {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .menu-base-tab__bases {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

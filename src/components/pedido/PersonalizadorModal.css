@@ -1,0 +1,280 @@
+.personalizador-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.personalizador-modal {
+  background: var(--color-black);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  animation: scaleIn 0.4s var(--ease-out-back);
+}
+
+.personalizador-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s ease;
+}
+
+.personalizador-close:hover {
+  color: var(--color-red);
+}
+
+.personalizador-header {
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  border-bottom: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.personalizador-title {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  color: var(--color-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-shadow: 0 0 8px rgba(255,183,3,0.3);
+}
+
+.personalizador-steps {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: var(--space-sm);
+}
+
+.personalizador-step {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  background: var(--color-gray);
+  color: var(--color-white);
+  border: 2px solid var(--color-gray-light);
+  transition: all 0.3s ease;
+}
+
+.personalizador-step--active {
+  background: var(--color-red);
+  border-color: var(--color-red);
+  box-shadow: var(--glow-red);
+}
+
+.personalizador-step--done {
+  background: var(--color-yellow);
+  border-color: var(--color-yellow);
+  color: var(--color-black);
+}
+
+.personalizador-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-light) transparent;
+}
+
+.personalizador-step-label {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: var(--space-sm);
+}
+
+.personalizador-options {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.personalizador-options--grid {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.personalizador-options--small {
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+}
+
+.personalizador-option {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.personalizador-option:hover {
+  border-color: var(--color-yellow);
+}
+
+.personalizador-option--active {
+  border-color: var(--color-red);
+  background: rgba(230, 57, 70, 0.15);
+  box-shadow: var(--glow-red);
+}
+
+.personalizador-option__deselect {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  background: var(--color-red);
+  border: 2px solid var(--color-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.2s var(--ease-out-back), background 0.2s ease;
+}
+
+.personalizador-option__deselect:hover {
+  transform: scale(1.2);
+  background: #ff4d5a;
+}
+
+.personalizador-option__name {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.personalizador-option__meta {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(241, 250, 238, 0.6);
+}
+
+.personalizador-option__price,
+.personalizador-option__extra {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  color: var(--color-yellow);
+  margin-top: auto;
+}
+
+.personalizador-submenu {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--glass-border);
+}
+
+.personalizador-footer {
+  padding: var(--space-md);
+  border-top: 1px solid var(--glass-border);
+  background: rgba(11, 12, 16, 0.9);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.personalizador-preview {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.personalizador-preview__label {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+}
+
+.personalizador-preview__price {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--color-yellow);
+  text-shadow: 0 0 8px rgba(255,183,3,0.4);
+}
+
+.personalizador-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.personalizador-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.personalizador-btn--primary {
+  background: var(--color-red);
+  color: var(--color-white);
+  box-shadow: var(--glow-red);
+}
+
+.personalizador-btn--primary:hover {
+  background: #ff4d5a;
+  transform: translateY(-2px);
+}
+
+.personalizador-btn--primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.personalizador-btn--secondary {
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--glass-border);
+}
+
+.personalizador-btn--secondary:hover {
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+}

@@ -170,13 +170,13 @@ export const menuData = {
   hours: {
     title: "Horarios de Apertura",
     days: [
-      { day: "Lunes", hours: "Cerrado", highlight: false },
-      { day: "Martes", hours: "13:30 – 16:30 | 20:00 – 24:00", highlight: false },
-      { day: "Miércoles", hours: "13:30 – 16:30 | 20:00 – 24:00", highlight: false },
-      { day: "Jueves", hours: "13:30 – 16:30 | 20:00 – 24:00", highlight: false },
-      { day: "Viernes", hours: "13:30 – 16:30 | 20:00 – 1:00", highlight: true },
-      { day: "Sábado", hours: "13:30 – 16:30 | 20:00 – 1:00", highlight: true },
-      { day: "Domingo", hours: "13:30 – 16:30 | 20:00 – 24:00", highlight: false }
+      { day: "Lunes", hours: "Cerrado", closed: true },
+      { day: "Martes", hours: "13:30 – 16:30 | 20:00 – 24:00" },
+      { day: "Miércoles", hours: "13:30 – 16:30 | 20:00 – 24:00" },
+      { day: "Jueves", hours: "13:30 – 16:30 | 20:00 – 24:00" },
+      { day: "Viernes", hours: "13:30 – 16:30 | 20:00 – 1:00", weekend: true },
+      { day: "Sábado", hours: "13:30 – 16:30 | 20:00 – 1:00", weekend: true },
+      { day: "Domingo", hours: "13:30 – 16:30 | 20:00 – 24:00" }
     ]
   }
 };

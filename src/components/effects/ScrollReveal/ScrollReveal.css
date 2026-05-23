@@ -1,22 +1,15 @@
 .scroll-reveal {
   opacity: 0;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  will-change: opacity, transform;
-}
-
-.scroll-reveal--up {
-  transform: translateY(40px);
-}
-
-.scroll-reveal--left {
-  transform: translateX(-40px);
-}
-
-.scroll-reveal--right {
-  transform: translateX(40px);
+  transform: var(--sr-initial-transform);
+  transition:
+    opacity var(--sr-duration) var(--sr-easing) var(--sr-delay),
+    transform var(--sr-duration) var(--sr-easing) var(--sr-delay),
+    filter var(--sr-duration) var(--sr-easing) var(--sr-delay);
+  will-change: opacity, transform, filter;
 }
 
 .scroll-reveal--visible {
   opacity: 1;
-  transform: translateY(0) translateX(0);
+  transform: var(--sr-final-transform);
+  filter: blur(0px);
 }

@@ -1,0 +1,25 @@
+.map-section {
+  margin-top: var(--space-xl);
+}
+
+.map-section__title {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--color-white);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  position: relative;
+}
+
+.map-section__title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-red), var(--color-yellow));
+  border-radius: 2px;
+}

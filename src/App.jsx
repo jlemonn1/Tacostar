@@ -1,27 +1,16 @@
 import React from 'react';
-import Navbar from './components/layout/Navbar/Navbar';
-import Hero from './sections/Hero/Hero';
-import About from './sections/About/About';
-import TopGratens from './sections/TopGratens/TopGratens';
-import MenuBuilder from './sections/MenuBuilder/MenuBuilder';
-import MenuCompleto from './sections/MenuCompleto/MenuCompleto';
-import Horarios from './sections/Horarios/Horarios';
-import Footer from './sections/Footer/Footer';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import PedidoPage from './pages/PedidoPage';
+import VisorPage from './pages/VisorPage';
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        {/* {/<TopGratens />/ */}
-        {/*<MenuBuilder /> */}
-        <MenuCompleto />
-        <Horarios />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/pedido" element={<PedidoPage />} />
+      <Route path="/visor" element={<VisorPage />} />
+    </Routes>
   );
 }
 

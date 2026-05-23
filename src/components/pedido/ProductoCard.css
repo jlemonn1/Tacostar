@@ -1,0 +1,91 @@
+.producto-card {
+  position: relative;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease-out-expo), box-shadow 0.3s ease;
+  min-height: 160px;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.producto-card__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.producto-card__name {
+  font-family: var(--font-title);
+  font-size: 1.35rem;
+  color: var(--color-white);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.producto-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(241, 250, 238, 0.7);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.producto-card__badge {
+  align-self: flex-start;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  color: var(--color-red);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(230, 57, 70, 0.15);
+  border: 1px solid rgba(230, 57, 70, 0.3);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.producto-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px dashed var(--glass-border);
+}
+
+.producto-card__price {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  color: var(--color-yellow);
+  text-shadow: 0 0 8px rgba(255,183,3,0.4);
+  line-height: 1;
+}
+
+.producto-card__add {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-red);
+  border: none;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-back);
+  box-shadow: var(--glow-red);
+  flex-shrink: 0;
+}
+
+.producto-card__add:hover {
+  transform: scale(1.15) rotate(90deg);
+  background: var(--color-yellow);
+  color: var(--color-black);
+  box-shadow: var(--shadow-neon);
+}

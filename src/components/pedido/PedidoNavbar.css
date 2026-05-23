@@ -1,0 +1,88 @@
+.pedido-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-navbar);
+  padding: var(--space-sm) 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.pedido-navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pedido-navbar__back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.pedido-navbar__back:hover {
+  color: var(--color-yellow);
+}
+
+.pedido-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.pedido-navbar__logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(230, 57, 70, 0.5));
+}
+
+.pedido-navbar__title {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 6px rgba(255,183,3,0.4);
+}
+
+.pedido-navbar__cart {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.pedido-navbar__cart:hover {
+  color: var(--color-yellow);
+  transform: scale(1.1);
+}
+
+.pedido-navbar__badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--color-red);
+  color: var(--color-white);
+  font-family: var(--font-title);
+  font-size: 0.65rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow-red);
+}

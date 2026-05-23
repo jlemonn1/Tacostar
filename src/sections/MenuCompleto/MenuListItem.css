@@ -1,0 +1,42 @@
+.menu-list-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  font-size: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--color-gray-light);
+  transition: background-color 0.2s ease;
+}
+
+.menu-list-item:hover {
+  background-color: rgba(255,255,255,0.02);
+}
+
+.menu-list-item--center {
+  justify-content: center;
+  border-bottom: none;
+}
+
+.menu-list-item__name {
+  font-family: var(--font-body);
+  color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.menu-list-item__dots {
+  flex-grow: 1;
+  border-bottom: 2px dotted var(--color-gray-light);
+  margin: 0 var(--space-xs);
+  min-width: 20px;
+  position: relative;
+  top: -3px;
+}
+
+.menu-list-item__price {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  color: var(--color-yellow);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}

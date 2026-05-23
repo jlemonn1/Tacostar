@@ -1,6 +1,43 @@
 .about {
-  background-color: var(--color-black);
   position: relative;
+  background-color: var(--color-black);
+  overflow: hidden;
+}
+
+.about__parallax {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.about__bg-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.about__bg-deco {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 5%;
+}
+
+.about__bg-text {
+  font-family: var(--font-title);
+  font-size: clamp(4rem, 12vw, 10rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
+  letter-spacing: 0.15em;
+  user-select: none;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  opacity: 0.5;
+}
+
+.about__content {
+  position: relative;
+  z-index: 2;
 }
 
 .about__grid {
@@ -11,47 +48,8 @@
   margin: 0 auto;
 }
 
-.about__block {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
-  padding: var(--space-md);
-  background-color: var(--color-gray);
-  border-radius: var(--radius-md);
-  border-left: 4px solid var(--color-red);
-  position: relative;
-  overflow: hidden;
-}
-
-.about__block:nth-child(even) {
-  border-left-color: var(--color-yellow);
-}
-
-.about__marker {
-  flex-shrink: 0;
-  font-size: 1.75rem;
-  line-height: 1;
-}
-
-.about__text {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--color-white);
-  opacity: 0.9;
-  line-height: 1.7;
-}
-
 @media (min-width: 768px) {
   .about__grid {
     gap: var(--space-xl);
-  }
-
-  .about__block {
-    padding: var(--space-lg);
-    gap: var(--space-lg);
-  }
-
-  .about__text {
-    font-size: 1.1rem;
   }
 }

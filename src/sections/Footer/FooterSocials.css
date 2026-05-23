@@ -1,0 +1,27 @@
+.footer-socials {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.footer-socials a {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--color-gray);
+  border: 1px solid var(--color-gray-light);
+  color: var(--color-white);
+  opacity: 0.8;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.footer-socials a:hover {
+  color: var(--color-red);
+  opacity: 1;
+  background-color: rgba(230, 57, 70, 0.1);
+  border-color: var(--color-red);
+  box-shadow: var(--glow-red);
+  transform: scale(1.1);
+}

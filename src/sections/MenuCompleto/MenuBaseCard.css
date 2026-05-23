@@ -1,0 +1,41 @@
+.menu-base-card {
+  background-color: var(--color-black);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-gray-light);
+  transition: all 0.3s ease;
+}
+
+.menu-base-card:hover {
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 12px rgba(255,183,3,0.1);
+}
+
+.menu-base-card__name {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--color-red);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.05em;
+}
+
+.menu-base-card__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.menu-base-card__items li {
+  font-size: 0.95rem;
+  color: var(--color-white);
+  opacity: 0.85;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.menu-base-card__items li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-yellow);
+}

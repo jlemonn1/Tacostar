@@ -1,0 +1,46 @@
+.open-chip {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.open-chip--open {
+  background: rgba(76, 175, 80, 0.15);
+  color: #4CAF50;
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+.open-chip--closed {
+  background: rgba(230, 57, 70, 0.15);
+  color: var(--color-red);
+  border: 1px solid rgba(230, 57, 70, 0.4);
+  box-shadow: 0 0 8px rgba(230, 57, 70, 0.2);
+}
+
+.open-chip__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--color-yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  opacity: 0.8;
+}
+
+.open-chip {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}

@@ -1,0 +1,29 @@
+.spray-drip {
+  position: absolute;
+  width: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: paintDripDown 2s var(--ease-out-expo) forwards;
+}
+
+.spray-drip--red { --drip-color: var(--color-red); }
+.spray-drip--yellow { --drip-color: var(--color-yellow); }
+.spray-drip--blue { --drip-color: var(--color-blue); }
+
+.spray-drip__trail {
+  width: 2px;
+  flex-grow: 1;
+  background: linear-gradient(to bottom, var(--drip-color), transparent);
+  opacity: 0.7;
+}
+
+.spray-drip__drop {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--drip-color);
+  box-shadow: 0 0 6px var(--drip-color);
+  margin-bottom: 2px;
+}

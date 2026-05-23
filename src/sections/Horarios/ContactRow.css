@@ -1,0 +1,26 @@
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-white);
+  opacity: 0.9;
+  word-break: break-word;
+}
+
+.contact-row__icon {
+  color: var(--color-yellow);
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(255,183,3,0.2));
+}
+
+.contact-row--link {
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-row--link:hover {
+  color: var(--color-yellow);
+  transform: translateX(4px);
+}

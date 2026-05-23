@@ -1,0 +1,20 @@
+.menu-desserts-tab__section {
+  text-align: center;
+}
+
+.menu-desserts-tab__title {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  color: var(--color-yellow);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+}
+
+.menu-desserts-tab__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 500px;
+  margin: 0 auto;
+}
