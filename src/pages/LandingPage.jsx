@@ -5,6 +5,7 @@ import About from '../sections/About/About';
 import MenuCompleto from '../sections/MenuCompleto/MenuCompleto';
 import Horarios from '../sections/Horarios/Horarios';
 import Footer from '../sections/Footer/Footer';
+import FloatingOrderButton from '../components/ui/FloatingOrderButton/FloatingOrderButton';
 
 function LandingPage() {
   return (
@@ -17,6 +18,7 @@ function LandingPage() {
         <Horarios />
       </main>
       <Footer />
+      <FloatingOrderButton />
     </>
   );
 }

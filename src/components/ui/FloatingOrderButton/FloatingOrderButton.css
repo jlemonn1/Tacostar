@@ -1,0 +1,337 @@
+/* =========================================
+   FloatingOrderButton — TacoStar vibes
+   ========================================= */
+
+.fob {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(24px) scale(0.85);
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease-out-expo),
+              transform 0.5s var(--ease-out-expo);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.fob--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.fob__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: fobFloat 4s ease-in-out infinite;
+}
+
+/* ========== SVG Logo ========== */
+.fob__svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 20px rgba(230, 57, 70, 0.35));
+  overflow: visible;
+}
+
+/* --- 1. Anillo rojo --- */
+.fob-ring {
+  stroke-dasharray: 560;
+  stroke-dashoffset: 560;
+  animation: fobDrawRing 1s var(--ease-out-expo) forwards;
+  transform-origin: center;
+}
+
+@keyframes fobDrawRing {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --- 2. Anillo azul --- */
+.fob-ring-blue {
+  opacity: 0;
+  animation: fobFadeIn 0.7s ease 0.7s forwards;
+}
+
+/* --- 3. Fondo --- */
+.fob-bg {
+  transform: scale(0);
+  animation: fobPop 0.6s var(--ease-spring) 0.15s forwards;
+  transform-origin: center;
+}
+
+@keyframes fobPop {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* --- 4. Taco --- */
+.fob-taco {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9) rotate(-3deg);
+  animation: fobTacoIn 0.8s var(--ease-out-back) 0.35s forwards;
+  transform-origin: center;
+}
+
+@keyframes fobTacoIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+/* --- 5. Grill --- */
+.fob-grill {
+  opacity: 0;
+  animation: fobFadeIn 0.6s ease 0.65s forwards;
+}
+
+/* --- 6. Mordisco --- */
+.fob-bite {
+  opacity: 0;
+  transform: scale(0.3);
+  animation: fobBiteIn 0.45s var(--ease-out-back) 0.75s forwards;
+  transform-origin: 122px 68px;
+}
+
+@keyframes fobBiteIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- 7. Migajas --- */
+.fob-crumbs {
+  opacity: 0;
+  animation: fobCrumbsIn 0.45s var(--ease-out-back) 0.9s forwards;
+}
+
+@keyframes fobCrumbsIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.fob-crumbs circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fobCrumble 3s ease-in-out 1.3s infinite;
+}
+
+.fob-crumbs circle:nth-child(2) { animation-delay: 1.4s; }
+.fob-crumbs circle:nth-child(3) { animation-delay: 1.5s; }
+.fob-crumbs circle:nth-child(4) { animation-delay: 1.6s; }
+.fob-crumbs circle:nth-child(5) { animation-delay: 1.7s; }
+
+@keyframes fobCrumble {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(1px, -2px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(0px, -1px); }
+}
+
+/* --- 8. Cinta --- */
+.fob-ribbon {
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  animation: fobRibbonReveal 0.75s var(--ease-out-expo) 0.8s forwards;
+}
+
+@keyframes fobRibbonReveal {
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.fob-ribbon-text {
+  opacity: 0;
+  letter-spacing: 8px;
+  animation: fobRibbonTextIn 0.6s var(--ease-out-expo) 1.05s forwards;
+}
+
+@keyframes fobRibbonTextIn {
+  to {
+    opacity: 1;
+    letter-spacing: 3px;
+  }
+}
+
+/* --- 9. Destellos --- */
+.fob-sparkle {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.fob-sparkle--1 {
+  transform: scale(0) rotate(-45deg);
+  animation: fobStarBurst 0.55s var(--ease-out-back) 1.2s forwards,
+             fobStarPulse 2.5s ease-in-out 1.75s infinite;
+}
+
+.fob-sparkle--2 {
+  transform: scale(0) rotate(30deg);
+  animation: fobStarBurst 0.5s var(--ease-out-back) 1.35s forwards,
+             fobStarPulse 2.2s ease-in-out 1.85s infinite;
+}
+
+@keyframes fobStarBurst {
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes fobStarPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(79, 195, 247, 0.35));
+  }
+  50% {
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 10px rgba(79, 195, 247, 0.75));
+  }
+}
+
+/* --- 10. Líneas de acción --- */
+.fob-action-lines {
+  opacity: 0;
+  animation: fobFadeIn 0.5s ease 1.15s forwards;
+}
+
+.fob-action-lines line {
+  stroke-dasharray: 18;
+  stroke-dashoffset: 18;
+  animation: fobDashDraw 0.7s ease-out 1.25s forwards;
+}
+
+.fob-action-lines line:nth-child(2) { animation-delay: 1.3s; }
+.fob-action-lines line:nth-child(3) { animation-delay: 1.35s; }
+.fob-action-lines line:nth-child(4) { animation-delay: 1.4s; }
+.fob-action-lines line:nth-child(5) { animation-delay: 1.45s; }
+
+@keyframes fobDashDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --- 11. Gotas --- */
+.fob-drips {
+  opacity: 0;
+  animation: fobFadeIn 0.5s ease 1.35s forwards;
+}
+
+.fob-drips circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fobDripFloat 2.8s ease-in-out infinite;
+}
+
+.fob-drips circle:nth-child(1) { animation-delay: 0s; }
+.fob-drips circle:nth-child(2) { animation-delay: 0.5s; }
+.fob-drips circle:nth-child(3) { animation-delay: 1.0s; }
+.fob-drips circle:nth-child(4) { animation-delay: 1.5s; }
+.fob-drips circle:nth-child(5) { animation-delay: 2.0s; }
+
+@keyframes fobDripFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.12); }
+}
+
+/* --- Utilidades --- */
+@keyframes fobFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover del wrapper */
+.fob__wrapper:hover .fob__svg {
+  transform: scale(1.08) rotate(-2deg);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+/* ========== Halos ========== */
+.fob__halo {
+  position: absolute;
+  inset: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  animation: fobRotateSlow 14s linear infinite;
+  pointer-events: none;
+}
+
+.fob__halo--delayed {
+  inset: -16px;
+  width: calc(100% + 32px);
+  height: calc(100% + 32px);
+  animation-duration: 20s;
+  animation-direction: reverse;
+  opacity: 0.7;
+}
+
+/* ========== Partículas ========== */
+.fob__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.fob__particles span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  opacity: 0;
+  animation: fobParticleFloat 3s ease-out infinite;
+}
+
+.fob__particles span:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.fob__particles span:nth-child(2) { top: 80%; left: 85%; animation-delay: 0.6s; background: var(--color-red); }
+.fob__particles span:nth-child(3) { top: 10%; left: 70%; animation-delay: 1.2s; background: var(--color-white); width: 3px; height: 3px; }
+.fob__particles span:nth-child(4) { top: 70%; left: 20%; animation-delay: 1.8s; background: var(--color-yellow); width: 4px; height: 4px; }
+.fob__particles span:nth-child(5) { top: 45%; left: 95%; animation-delay: 2.4s; background: var(--color-red); width: 3px; height: 3px; }
+
+@keyframes fobParticleFloat {
+  0% { transform: translateY(0) scale(0); opacity: 0; }
+  20% { opacity: 0.9; }
+  80% { opacity: 0.6; }
+  100% { transform: translateY(-35px) scale(1); opacity: 0; }
+}
+
+@keyframes fobRotateSlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fobFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ========== Responsive ========== */
+@media (min-width: 768px) {
+  .fob {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 88px;
+    height: 88px;
+  }
+}

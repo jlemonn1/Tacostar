@@ -16,17 +16,36 @@ const TacoStarLogoSVG = () => (
     aria-label="TacoStar Original French Tacos"
   >
     <defs>
-      <linearGradient id="bandGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#E63946" />
-        <stop offset="55%" stopColor="#E63946" />
-        <stop offset="55%" stopColor="#1D3557" />
-        <stop offset="100%" stopColor="#1D3557" />
-      </linearGradient>
-      <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-        <feGaussianBlur stdDeviation="3" result="blur" />
-        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+      {/* Clip para el taco (incluye el mordisco) */}
+      <clipPath id="tacoClip">
+        <path d="
+          M 145 140
+          Q 145 110 165 110
+          L 228 110
+          A 34 34 0 0 1 266 148
+          L 258 285
+          Q 258 300 200 300
+          Q 142 300 142 285
+          Z
+        " />
+      </clipPath>
+
+      {/* Sombra suave */}
+      <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="6" stdDeviation="5" floodColor="#000" floodOpacity="0.35"/>
       </filter>
-      <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+
+      {/* Glow rojo */}
+      <filter id="redGlow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="6" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+
+      {/* Glow azul estrella */}
+      <filter id="blueGlow" x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur stdDeviation="4" result="blur" />
         <feMerge>
           <feMergeNode in="blur" />
@@ -35,19 +54,16 @@ const TacoStarLogoSVG = () => (
       </filter>
     </defs>
 
-    {/* Fondo oscuro */}
+    {/* ===== 1. FONDO ===== */}
     <circle
       className="logo-bg"
       cx="200"
       cy="200"
-      r="190"
+      r="192"
       fill="#0B0C10"
-      stroke="#1D3557"
-      strokeWidth="2"
-      opacity="0.9"
     />
 
-    {/* Anillo exterior dibujado */}
+    {/* ===== 2. ANILLO EXTERIOR ROJO ===== */}
     <circle
       className="logo-ring"
       cx="200"
@@ -55,96 +71,180 @@ const TacoStarLogoSVG = () => (
       r="186"
       fill="none"
       stroke="#E63946"
-      strokeWidth="4"
+      strokeWidth="5"
       strokeLinecap="round"
     />
 
-    {/* Taco */}
-    <g className="logo-taco">
-      {/* Contorno taco */}
-      <ellipse cx="200" cy="210" rx="95" ry="75" fill="#FFB703" />
-      <ellipse cx="200" cy="205" rx="85" ry="65" fill="#FFC927" />
-      
-      {/* Textura grill / doblez */}
-      <path d="M135 190 Q200 160 265 190" stroke="#E63946" strokeWidth="3" fill="none" opacity="0.25" strokeLinecap="round"/>
-      <path d="M140 205 Q200 175 260 205" stroke="#E63946" strokeWidth="3" fill="none" opacity="0.25" strokeLinecap="round"/>
-      <path d="M145 220 Q200 190 255 220" stroke="#E63946" strokeWidth="3" fill="none" opacity="0.25" strokeLinecap="round"/>
-      
-      {/* Sombra interior */}
-      <ellipse cx="200" cy="245" rx="70" ry="20" fill="#0B0C10" opacity="0.15" />
+    {/* ===== 3. ANILLO EXTERIOR AZUL (delgado, doble) ===== */}
+    <circle
+      className="logo-ring-blue"
+      cx="200"
+      cy="200"
+      r="178"
+      fill="none"
+      stroke="#1D3557"
+      strokeWidth="2"
+      opacity="0.5"
+    />
+
+    {/* ===== 4. TACO ===== */}
+    <g clipPath="url(#tacoClip)" className="logo-taco">
+      {/* Base amarilla */}
+      <rect x="130" y="100" width="140" height="210" rx="22" fill="#FFB703" />
+      {/* Degradado claro */}
+      <rect x="130" y="100" width="140" height="210" rx="22" fill="url(#tacoGrad)" opacity="0.25" />
+
+      {/* Patrón grill / rombos */}
+      <g className="logo-grill" opacity="0.22" stroke="#E63946" strokeWidth="2.2" strokeLinecap="round">
+        {/* Diagonales \ */}
+        <path d="M130 155 L195 90" />
+        <path d="M130 195 L235 90" />
+        <path d="M130 235 L275 90" />
+        <path d="M130 275 L275 145" />
+        <path d="M165 310 L275 200" />
+        <path d="M205 310 L275 240" />
+
+        {/* Diagonales / */}
+        <path d="M270 155 L205 90" />
+        <path d="M270 195 L165 90" />
+        <path d="M270 235 L125 90" />
+        <path d="M270 275 L125 145" />
+        <path d="M235 310 L125 200" />
+        <path d="M195 310 L125 240" />
+      </g>
+
+      {/* Mordisco (se ve como fondo oscuro cortando) */}
+      <circle
+        className="logo-bite"
+        cx="262"
+        cy="136"
+        r="32"
+        fill="#0B0C10"
+      />
+      {/* Detalle mordisco (migajas) */}
+      <g className="logo-crumbs" fill="#FFB703">
+        <circle cx="250" cy="110" r="3.5" />
+        <circle cx="260" cy="102" r="2.5" />
+        <circle cx="272" cy="108" r="2" />
+        <circle cx="278" cy="120" r="3" />
+        <circle cx="282" cy="134" r="2" />
+      </g>
     </g>
 
-    {/* Tenedor */}
-    <g className="logo-fork">
-      {/* Mango */}
-      <rect x="196" y="85" width="8" height="100" rx="4" fill="#B0BEC5" />
-      {/* Base púas */}
-      <rect x="188" y="175" width="24" height="12" rx="3" fill="#B0BEC5" />
-      {/* Púas */}
-      <rect x="188" y="175" width="4" height="70" rx="2" fill="#CFD8DC" />
-      <rect x="198" y="175" width="4" height="70" rx="2" fill="#CFD8DC" />
-      <rect x="208" y="175" width="4" height="70" rx="2" fill="#CFD8DC" />
-      {/* Sombra tenedor */}
-      <rect x="200" y="85" width="4" height="160" fill="#0B0C10" opacity="0.1" rx="2" />
-    </g>
-
-    {/* Banda diagonal */}
-    <g className="logo-band">
+    {/* ===== 5. CINTA / BANDA ROJA ===== */}
+    <g className="logo-ribbon" filter="url(#softShadow)">
+      {/* Cuerpo cinta */}
       <path
-        d="M45 255 L355 145 L355 195 L45 305 Z"
-        fill="url(#bandGrad)"
-        opacity="0.95"
+        d="
+          M 52 205
+          L 92 192
+          Q 200 186 308 192
+          L 348 205
+          L 308 218
+          Q 200 224 92 218
+          Z
+        "
+        fill="#E63946"
+        stroke="#B92B36"
+        strokeWidth="1"
       />
-      {/* Borde banda */}
+      {/* Doblez de cinta (sombra interior) */}
       <path
-        d="M45 255 L355 145 L355 195 L45 305 Z"
-        fill="none"
-        stroke="#F1FAEE"
-        strokeWidth="1.5"
-        opacity="0.35"
+        d="
+          M 52 205
+          L 92 192
+          L 92 218
+          Z
+        "
+        fill="#C62828"
+        opacity="0.6"
       />
-      {/* Texto TACOSTAR */}
+      <path
+        d="
+          M 348 205
+          L 308 192
+          L 308 218
+          Z
+        "
+        fill="#C62828"
+        opacity="0.6"
+      />
+      {/* Texto TACOSTAR sobre la cinta */}
       <text
+        className="logo-ribbon-text"
         x="200"
-        y="240"
+        y="210"
         textAnchor="middle"
         dominantBaseline="middle"
         fill="#F1FAEE"
         fontFamily="'Bebas Neue', sans-serif"
-        fontSize="52"
+        fontSize="38"
         fontWeight="700"
-        letterSpacing="6"
-        transform="rotate(-14 200 235)"
-        style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}
+        letterSpacing="5"
+        style={{ textShadow: '0 2px 6px rgba(0,0,0,0.35)' }}
       >
         TACOSTAR
       </text>
     </g>
 
-    {/* Texto inferior */}
+    {/* ===== 6. TEXTOS INFERIORES ===== */}
     <text
       className="logo-sub"
       x="200"
-      y="365"
+      y="355"
       textAnchor="middle"
       dominantBaseline="middle"
       fill="#FFB703"
       fontFamily="'Inter', sans-serif"
-      fontSize="17"
-      fontWeight="700"
-      letterSpacing="4"
+      fontSize="13"
+      fontWeight="600"
+      letterSpacing="4.5"
+      opacity="0.9"
     >
       ORIGINAL FRENCH TACOS
     </text>
 
-    {/* Estrella / chispa azul */}
-    <g className="logo-star" filter="url(#starGlow)">
+    {/* ===== 7. DESTELLOS / ESTRELLAS ===== */}
+    <g className="logo-sparkle sparkle-1" filter="url(#blueGlow)">
       <path
-        d="M72 88 L80 108 L100 108 L84 120 L90 140 L72 128 L54 140 L60 120 L44 108 L64 108 Z"
+        d="M 78 95 L 83 108 L 96 108 L 86 116 L 90 129 L 78 121 L 66 129 L 70 116 L 60 108 L 73 108 Z"
         fill="#1D3557"
       />
-      <circle cx="72" cy="114" r="6" fill="#4FC3F7" opacity="0.6" />
+      <circle cx="78" cy="114" r="5" fill="#4FC3F7" opacity="0.5" />
     </g>
+
+    <g className="logo-sparkle sparkle-2">
+      <path
+        d="M 320 78 L 323 86 L 331 86 L 325 91 L 327 99 L 320 94 L 313 99 L 315 91 L 309 86 L 317 86 Z"
+        fill="#FFB703"
+        opacity="0.8"
+      />
+    </g>
+
+    {/* ===== 8. ELEMENTOS DECORATIVOS EXTRAS ===== */}
+    {/* Líneas de acción alrededor */}
+    <g className="logo-action-lines" stroke="#F1FAEE" strokeLinecap="round" opacity="0.15">
+      <line x1="120" y1="85" x2="105" y2="70" strokeWidth="2.5" />
+      <line x1="125" y1="75" x2="118" y2="58" strokeWidth="1.5" />
+      <line x1="280" y1="85" x2="295" y2="70" strokeWidth="2.5" />
+      <line x1="275" y1="75" x2="282" y2="58" strokeWidth="1.5" />
+      <line x1="200" y1="68" x2="200" y2="52" strokeWidth="2" />
+    </g>
+
+    {/* Pequeñas gotas de salsa/queso flotando */}
+    <g className="logo-drips">
+      <circle cx="110" cy="240" r="4.5" fill="#E63946" opacity="0.85" />
+      <circle cx="118" cy="235" r="2.5" fill="#FFB703" opacity="0.7" />
+      <circle cx="290" cy="245" r="3.5" fill="#E63946" opacity="0.75" />
+      <circle cx="298" cy="252" r="2" fill="#1D3557" opacity="0.5" />
+      <circle cx="200" cy="325" r="3" fill="#FFB703" opacity="0.6" />
+    </g>
+
+    {/* Gradiente taco */}
+    <linearGradient id="tacoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stopColor="#FFFFFF" />
+      <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0" />
+    </linearGradient>
   </svg>
 );
 

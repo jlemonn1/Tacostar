@@ -90,7 +90,6 @@
 }
 
 .pedido-page__custom-btn {
-  margin-top: var(--space-sm);
   padding: var(--space-sm) var(--space-xl);
   background: var(--color-red);
   color: var(--color-white);
@@ -108,4 +107,30 @@
 .pedido-page__custom-btn:hover {
   background: #ff4d5a;
   transform: scale(1.05);
+}
+
+.pedido-page__custom-btn-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+.pedido-page__custom-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 50%;
+  background: var(--color-yellow);
+  color: var(--color-black);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  line-height: 22px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(255, 183, 3, 0.5);
+  pointer-events: none;
 }

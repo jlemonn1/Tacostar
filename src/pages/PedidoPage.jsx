@@ -30,6 +30,7 @@ const PedidoPage = () => {
   } = useCart();
 
   const products = getProductsByCategory(activeCategory);
+  const customCount = cart.reduce((sum, item) => item.type === 'custom' ? sum + item.quantity : sum, 0);
 
   const handleAdd = (product, category) => {
     if (category === CATEGORY.CUSTOM_TACO) {
@@ -41,12 +42,10 @@ const PedidoPage = () => {
       return;
     }
     addFixedItem(product.key);
-    setShowCart(true);
   };
 
   const handleCustomAdd = (selection) => {
     addCustomItem(selection);
-    setShowCart(true);
   };
 
   const handleMenuConfirm = (options) => {
@@ -57,7 +56,6 @@ const PedidoPage = () => {
       addFixedItem(menuPromptProduct.key, options);
     }
     setMenuPromptProduct(null);
-    setShowCart(true);
   };
 
   const handleGenerateQR = () => {
@@ -99,16 +97,21 @@ const PedidoPage = () => {
                     </span>
                   ))}
                 </div>
-                <button
-                  className="pedido-page__custom-btn"
-                  onClick={() => setShowPersonalizador(true)}
-                >
-                  Crear mi taco
-                </button>
+                <div className="pedido-page__custom-btn-wrap">
+                  <button
+                    className="pedido-page__custom-btn"
+                    onClick={() => setShowPersonalizador(true)}
+                  >
+                    Crear mi taco
+                  </button>
+                  {customCount > 0 && (
+                    <span className="pedido-page__custom-badge">{customCount}</span>
+                  )}
+                </div>
               </div>
             </div>
           ) : (
-            <ProductoGrid products={products} onAdd={handleAdd} category={activeCategory} />
+            <ProductoGrid products={products} onAdd={handleAdd} category={activeCategory} cart={cart} />
           )}
         </div>
       </main>

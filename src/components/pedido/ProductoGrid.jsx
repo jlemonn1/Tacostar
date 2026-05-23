@@ -6,7 +6,7 @@ import './ProductoGrid.css';
 const SIZE_ORDER = { simple: 0, doble: 1, maxi: 2 };
 const SIZE_LABELS = { simple: 'Tacos Simples', doble: 'Tacos Dobles', maxi: 'Tacos Maxi' };
 
-const ProductoGrid = ({ products, onAdd, category }) => {
+const ProductoGrid = ({ products, onAdd, category, cart }) => {
   if (!products || products.length === 0) {
     return (
       <div className="producto-grid__empty">
@@ -38,6 +38,7 @@ const ProductoGrid = ({ products, onAdd, category }) => {
                   onAdd={onAdd}
                   category={category}
                   hideSizeBadge
+                  cart={cart}
                 />
               ))}
             </div>
@@ -55,6 +56,7 @@ const ProductoGrid = ({ products, onAdd, category }) => {
           product={product}
           onAdd={onAdd}
           category={category}
+          cart={cart}
         />
       ))}
     </div>

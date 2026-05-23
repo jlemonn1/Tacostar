@@ -16,11 +16,11 @@
   height: 100%;
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 0 24px rgba(230, 57, 70, 0.45));
+  filter: drop-shadow(0 0 28px rgba(230, 57, 70, 0.35));
   overflow: visible;
 }
 
-/* Anillo exterior — se dibuza al cargar */
+/* --- 1. Anillo rojo --- */
 .logo-ring {
   stroke-dasharray: 1170;
   stroke-dashoffset: 1170;
@@ -34,10 +34,16 @@
   }
 }
 
-/* Fondo — pop con spring */
+/* --- 2. Anillo azul (fino) --- */
+.logo-ring-blue {
+  opacity: 0;
+  animation: logoFadeIn 0.8s ease 0.8s forwards;
+}
+
+/* --- 3. Fondo oscuro --- */
 .logo-bg {
   transform: scale(0);
-  animation: logoPop 0.8s var(--ease-spring) 0.2s forwards;
+  animation: logoPop 0.7s var(--ease-spring) 0.2s forwards;
   transform-origin: center;
 }
 
@@ -47,71 +53,131 @@
   }
 }
 
-/* Taco — sube y aparece */
+/* --- 4. Taco --- */
 .logo-taco {
   opacity: 0;
-  transform: translateY(30px) scale(0.85);
-  animation: logoSlideUp 0.9s var(--ease-out-back) 0.5s forwards;
+  transform: translateY(45px) scale(0.9) rotate(-3deg);
+  animation: logoTacoIn 0.9s var(--ease-out-back) 0.45s forwards;
   transform-origin: center;
 }
 
-@keyframes logoSlideUp {
+@keyframes logoTacoIn {
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1) rotate(0deg);
   }
 }
 
-/* Tenedor — caída desde arriba */
-.logo-fork {
+/* --- 5. Grill / patrón rombos --- */
+.logo-grill {
   opacity: 0;
-  transform: translateY(-60px) rotate(-8deg);
-  animation: logoForkStab 0.7s var(--ease-out-back) 0.9s forwards;
-  transform-origin: 200px 130px;
+  animation: logoFadeIn 0.7s ease 0.85s forwards;
 }
 
-@keyframes logoForkStab {
+/* --- 6. Mordisco --- */
+.logo-bite {
+  opacity: 0;
+  transform: scale(0.3);
+  animation: logoBiteIn 0.5s var(--ease-out-back) 1s forwards;
+  transform-origin: 262px 136px;
+}
+
+@keyframes logoBiteIn {
   to {
     opacity: 1;
-    transform: translateY(0) rotate(0deg);
+    transform: scale(1);
   }
 }
 
-/* Banda — revelado lateral */
-.logo-band {
+/* --- 7. Migajas --- */
+.logo-crumbs {
   opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  animation: logoBandReveal 0.8s var(--ease-out-expo) 1.1s forwards;
+  animation: logoCrumbsIn 0.5s var(--ease-out-back) 1.15s forwards;
 }
 
-@keyframes logoBandReveal {
+@keyframes logoCrumbsIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.logo-crumbs circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logoCrumble 3s ease-in-out 1.6s infinite;
+}
+
+.logo-crumbs circle:nth-child(2) { animation-delay: 1.7s; }
+.logo-crumbs circle:nth-child(3) { animation-delay: 1.8s; }
+.logo-crumbs circle:nth-child(4) { animation-delay: 1.9s; }
+.logo-crumbs circle:nth-child(5) { animation-delay: 2.0s; }
+
+@keyframes logoCrumble {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(1px, -2px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(0px, -1px); }
+}
+
+/* --- 8. Cinta roja --- */
+.logo-ribbon {
+  opacity: 0;
+  clip-path: inset(0 50% 0 50%);
+  animation: logoRibbonReveal 0.85s var(--ease-out-expo) 1.05s forwards;
+}
+
+@keyframes logoRibbonReveal {
   to {
     opacity: 1;
     clip-path: inset(0 0 0 0);
   }
 }
 
-/* Texto inferior — fade + tracking */
-.logo-sub {
+/* Texto de cinta */
+.logo-ribbon-text {
   opacity: 0;
   letter-spacing: 12px;
-  animation: logoTextReveal 0.8s var(--ease-out-expo) 1.4s forwards;
+  animation: logoRibbonTextIn 0.7s var(--ease-out-expo) 1.35s forwards;
+}
+
+@keyframes logoRibbonTextIn {
+  to {
+    opacity: 1;
+    letter-spacing: 5px;
+  }
+}
+
+/* --- 9. Texto inferior --- */
+.logo-sub {
+  opacity: 0;
+  letter-spacing: 10px;
+  animation: logoTextReveal 0.8s var(--ease-out-expo) 1.55s forwards;
 }
 
 @keyframes logoTextReveal {
   to {
-    opacity: 1;
-    letter-spacing: 4px;
+    opacity: 0.9;
+    letter-spacing: 4.5px;
   }
 }
 
-/* Estrella — pulso/brillo */
-.logo-star {
+/* --- 10. Destellos --- */
+.logo-sparkle {
   opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.sparkle-1 {
   transform: scale(0) rotate(-45deg);
-  animation: logoStarBurst 0.6s var(--ease-out-back) 1.6s forwards,
-             logoStarPulse 2.5s ease-in-out 2.2s infinite;
-  transform-origin: 72px 114px;
+  animation: logoStarBurst 0.6s var(--ease-out-back) 1.7s forwards,
+             logoStarPulse 2.5s ease-in-out 2.3s infinite;
+}
+
+.sparkle-2 {
+  transform: scale(0) rotate(30deg);
+  animation: logoStarBurst 0.5s var(--ease-out-back) 1.85s forwards,
+             logoStarPulse 2.2s ease-in-out 2.35s infinite;
 }
 
 @keyframes logoStarBurst {
@@ -124,17 +190,70 @@
 @keyframes logoStarPulse {
   0%, 100% {
     transform: scale(1);
-    filter: drop-shadow(0 0 4px rgba(79, 195, 247, 0.4));
+    filter: drop-shadow(0 0 4px rgba(79, 195, 247, 0.35));
   }
   50% {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 12px rgba(79, 195, 247, 0.8));
+    transform: scale(1.18);
+    filter: drop-shadow(0 0 12px rgba(79, 195, 247, 0.75));
   }
 }
 
-/* Hover del wrapper — leve tilt en el SVG */
+/* --- 11. Líneas de acción --- */
+.logo-action-lines {
+  opacity: 0;
+  animation: logoFadeIn 0.6s ease 1.6s forwards;
+}
+
+.logo-action-lines line {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: logoDashDraw 0.8s ease-out 1.7s forwards;
+}
+
+.logo-action-lines line:nth-child(2) { animation-delay: 1.75s; }
+.logo-action-lines line:nth-child(3) { animation-delay: 1.8s; }
+.logo-action-lines line:nth-child(4) { animation-delay: 1.85s; }
+.logo-action-lines line:nth-child(5) { animation-delay: 1.9s; }
+
+@keyframes logoDashDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* --- 12. Gotas / drips --- */
+.logo-drips {
+  opacity: 0;
+  animation: logoFadeIn 0.6s ease 1.9s forwards;
+}
+
+.logo-drips circle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logoDripFloat 2.8s ease-in-out infinite;
+}
+
+.logo-drips circle:nth-child(1) { animation-delay: 0s; }
+.logo-drips circle:nth-child(2) { animation-delay: 0.5s; }
+.logo-drips circle:nth-child(3) { animation-delay: 1.0s; }
+.logo-drips circle:nth-child(4) { animation-delay: 1.5s; }
+.logo-drips circle:nth-child(5) { animation-delay: 2.0s; }
+
+@keyframes logoDripFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.12); }
+}
+
+/* --- Utilidades --- */
+@keyframes logoFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hover del wrapper */
 .hero-logo__wrapper:hover .hero-logo__svg {
-  transform: scale(1.06) rotate(-2deg);
+  transform: scale(1.05) rotate(-1.5deg);
   transition: transform 0.5s var(--ease-spring);
 }
 

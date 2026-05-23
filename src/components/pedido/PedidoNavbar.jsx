@@ -11,10 +11,10 @@ const PedidoNavbar = ({ itemCount, onCartClick }) => {
           <ArrowLeft size={20} />
           <span>Volver</span>
         </Link>
-        <div className="pedido-navbar__brand">
+        <Link to="/" className="pedido-navbar__brand">
           <img src="/images/tacostar-logo.png" alt="TacoStar" className="pedido-navbar__logo" />
           <span className="pedido-navbar__title">PEDIDOS</span>
-        </div>
+        </Link>
         <button className="pedido-navbar__cart" onClick={onCartClick} aria-label="Ver cesta">
           <ShoppingCart size={22} />
           {itemCount > 0 && (
